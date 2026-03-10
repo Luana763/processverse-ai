@@ -1,0 +1,97 @@
+import { GitBranch, PlayCircle, ListTodo, Bot, TrendingUp, Clock, CheckCircle, AlertTriangle } from "lucide-react";
+import { StatsCard } from "@/components/StatsCard";
+import { StatusBadge } from "@/components/StatusBadge";
+import { motion } from "framer-motion";
+
+const recentExecutions = [
+  { id: 1, workflow: "Aprovação de Reembolso", status: "completed" as const, user: "Maria Silva", date: "10 min atrás" },
+  { id: 2, workflow: "Provisionamento de Acesso", status: "running" as const, user: "João Santos", date: "25 min atrás" },
+  { id: 3, workflow: "Validação de Políticas", status: "error" as const, user: "Ana Costa", date: "1h atrás" },
+  { id: 4, workflow: "Onboarding de Funcionário", status: "completed" as const, user: "Carlos Lima", date: "2h atrás" },
+  { id: 5, workflow: "Classificação de Documentos", status: "pending" as const, user: "Sistema IA", date: "3h atrás" },
+];
+
+const pendingTasks = [
+  { id: 1, title: "Aprovar reembolso #1247", workflow: "Reembolso", priority: "Alta" },
+  { id: 2, title: "Revisar acesso solicitado", workflow: "Provisionamento", priority: "Média" },
+  { id: 3, title: "Validar documento fiscal", workflow: "Validação", priority: "Alta" },
+];
+
+export default function Dashboard() {
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold">Dashboard</h1>
+        <p className="text-muted-foreground">Visão geral das automações e processos</p>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatsCard title="Workflows Ativos" value={24} icon={GitBranch} trend={{ value: 12, positive: true }} description="vs mês anterior" gradient />
+        <StatsCard title="Execuções Hoje" value={156} icon={PlayCircle} trend={{ value: 8, positive: true }} description="vs ontem" />
+        <StatsCard title="Tarefas Pendentes" value={7} icon={ListTodo} trend={{ value: 3, positive: false }} description="necessitam atenção" />
+        <StatsCard title="Automações Ativas" value={12} icon={Bot} trend={{ value: 15, positive: true }} description="workers rodando" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Recent Executions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="lg:col-span-2 bg-card rounded-xl border shadow-card p-5"
+        >
+          <h3 className="font-semibold mb-4 flex items-center gap-2">
+            <Clock className="h-4 w-4 text-primary" />
+            Execuções Recentes
+          </h3>
+          <div className="space-y-3">
+            {recentExecutions.map((exec) => (
+              <div key={exec.id} className="flex items-center justify-between py-2 border-b last:border-0">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="h-8 w-8 rounded-lg gradient-surface flex items-center justify-center shrink-0">
+                    <GitBranch className="h-3.5 w-3.5 text-primary" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium truncate">{exec.workflow}</p>
+                    <p className="text-xs text-muted-foreground">{exec.user}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 shrink-0">
+                  <StatusBadge status={exec.status} />
+                  <span className="text-xs text-muted-foreground hidden sm:block">{exec.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Pending Tasks */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="bg-card rounded-xl border shadow-card p-5"
+        >
+          <h3 className="font-semibold mb-4 flex items-center gap-2">
+            <ListTodo className="h-4 w-4 text-accent" />
+            Tarefas Pendentes
+          </h3>
+          <div className="space-y-3">
+            {pendingTasks.map((task) => (
+              <div key={task.id} className="p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors cursor-pointer">
+                <p className="text-sm font-medium mb-1">{task.title}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-muted-foreground">{task.workflow}</span>
+                  <span className={`text-xs font-medium ${task.priority === "Alta" ? "text-destructive" : "text-warning"}`}>
+                    {task.priority}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
+}
