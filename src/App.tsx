@@ -42,7 +42,7 @@ function AppRoutes() {
       <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/workflows" element={<Workflows />} />
-        <Route path="/workflows/editor" element={<WorkflowEditor />} />
+        <Route path="/workflows/editor/:id" element={<WorkflowEditor />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/roles" element={<RolesPage />} />
         <Route path="/tasks" element={<TasksPage />} />
