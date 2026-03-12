@@ -13,13 +13,13 @@ import {
 const mainItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "Workflows", url: "/workflows", icon: GitBranch },
-  { title: "Tarefas", url: "/tasks", icon: ListTodo },
+  
   { title: "Execuções", url: "/executions", icon: History },
 ];
 
 const adminItems = [
   { title: "Usuários", url: "/users", icon: Users },
-  { title: "Papéis", url: "/roles", icon: Shield },
+  
   { title: "Automações", url: "/automations", icon: Bot },
   { title: "Integrações", url: "/integrations", icon: Plug },
   { title: "Auditoria", url: "/audit", icon: FileText },

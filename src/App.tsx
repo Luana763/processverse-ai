@@ -10,8 +10,6 @@ import Dashboard from "@/pages/Dashboard";
 import Workflows from "@/pages/Workflows";
 import WorkflowEditor from "@/pages/WorkflowEditor";
 import UsersPage from "@/pages/UsersPage";
-import RolesPage from "@/pages/RolesPage";
-import TasksPage from "@/pages/TasksPage";
 import ExecutionsPage from "@/pages/ExecutionsPage";
 import AutomationsPage from "@/pages/AutomationsPage";
 import IntegrationsPage from "@/pages/IntegrationsPage";
@@ -44,8 +42,6 @@ function AppRoutes() {
         <Route path="/workflows" element={<Workflows />} />
         <Route path="/workflows/editor/:id" element={<WorkflowEditor />} />
         <Route path="/users" element={<UsersPage />} />
-        <Route path="/roles" element={<RolesPage />} />
-        <Route path="/tasks" element={<TasksPage />} />
         <Route path="/executions" element={<ExecutionsPage />} />
         <Route path="/automations" element={<AutomationsPage />} />
         <Route path="/integrations" element={<IntegrationsPage />} />
