@@ -11,11 +11,6 @@ const recentExecutions = [
   { id: 5, workflow: "Classificação de Documentos", status: "pending" as const, user: "Sistema IA", date: "3h atrás" },
 ];
 
-const pendingTasks = [
-  { id: 1, title: "Aprovar reembolso #1247", workflow: "Reembolso", priority: "Alta" },
-  { id: 2, title: "Revisar acesso solicitado", workflow: "Provisionamento", priority: "Média" },
-  { id: 3, title: "Validar documento fiscal", workflow: "Validação", priority: "Alta" },
-];
 
 export default function Dashboard() {
   return (
