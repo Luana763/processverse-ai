@@ -10,8 +10,6 @@ import Dashboard from "@/pages/Dashboard";
 import Workflows from "@/pages/Workflows";
 import WorkflowEditor from "@/pages/WorkflowEditor";
 import UsersPage from "@/pages/UsersPage";
-import RolesPage from "@/pages/RolesPage";
-import TasksPage from "@/pages/TasksPage";
 import ExecutionsPage from "@/pages/ExecutionsPage";
 import AutomationsPage from "@/pages/AutomationsPage";
 import IntegrationsPage from "@/pages/IntegrationsPage";
