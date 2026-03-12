@@ -13,7 +13,7 @@ import {
 const mainItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "Workflows", url: "/workflows", icon: GitBranch },
-  { title: "Tarefas", url: "/tasks", icon: ListTodo },
+  
   { title: "Execuções", url: "/executions", icon: History },
 ];
 
