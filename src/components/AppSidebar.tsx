@@ -1,5 +1,5 @@
 import {
-  LayoutDashboard, GitBranch, Users, Shield, ListTodo,
+  LayoutDashboard, GitBranch, Users,
   History, Bot, Settings, Plug, FileText, Zap
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
