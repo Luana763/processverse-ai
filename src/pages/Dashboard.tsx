@@ -24,7 +24,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatsCard title="Workflows Ativos" value={24} icon={GitBranch} trend={{ value: 12, positive: true }} description="vs mês anterior" gradient />
         <StatsCard title="Execuções Hoje" value={156} icon={PlayCircle} trend={{ value: 8, positive: true }} description="vs ontem" />
-        <StatsCard title="Tarefas Pendentes" value={7} icon={ListTodo} trend={{ value: 3, positive: false }} description="necessitam atenção" />
+        <StatsCard title="Taxa de Sucesso" value="94%" icon={TrendingUp} trend={{ value: 5, positive: true }} description="vs mês anterior" />
         <StatsCard title="Automações Ativas" value={12} icon={Bot} trend={{ value: 15, positive: true }} description="workers rodando" />
       </div>
 
