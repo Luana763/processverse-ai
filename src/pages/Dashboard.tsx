@@ -28,65 +28,37 @@ export default function Dashboard() {
         <StatsCard title="Automações Ativas" value={12} icon={Bot} trend={{ value: 15, positive: true }} description="workers rodando" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Recent Executions */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="lg:col-span-2 bg-card rounded-xl border shadow-card p-5"
-        >
-          <h3 className="font-semibold mb-4 flex items-center gap-2">
-            <Clock className="h-4 w-4 text-primary" />
-            Execuções Recentes
-          </h3>
-          <div className="space-y-3">
-            {recentExecutions.map((exec) => (
-              <div key={exec.id} className="flex items-center justify-between py-2 border-b last:border-0">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="h-8 w-8 rounded-lg gradient-surface flex items-center justify-center shrink-0">
-                    <GitBranch className="h-3.5 w-3.5 text-primary" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium truncate">{exec.workflow}</p>
-                    <p className="text-xs text-muted-foreground">{exec.user}</p>
-                  </div>
+      {/* Recent Executions */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="bg-card rounded-xl border shadow-card p-5"
+      >
+        <h3 className="font-semibold mb-4 flex items-center gap-2">
+          <Clock className="h-4 w-4 text-primary" />
+          Execuções Recentes
+        </h3>
+        <div className="space-y-3">
+          {recentExecutions.map((exec) => (
+            <div key={exec.id} className="flex items-center justify-between py-2 border-b last:border-0">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="h-8 w-8 rounded-lg gradient-surface flex items-center justify-center shrink-0">
+                  <GitBranch className="h-3.5 w-3.5 text-primary" />
                 </div>
-                <div className="flex items-center gap-3 shrink-0">
-                  <StatusBadge status={exec.status} />
-                  <span className="text-xs text-muted-foreground hidden sm:block">{exec.date}</span>
+                <div className="min-w-0">
+                  <p className="text-sm font-medium truncate">{exec.workflow}</p>
+                  <p className="text-xs text-muted-foreground">{exec.user}</p>
                 </div>
               </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Pending Tasks */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="bg-card rounded-xl border shadow-card p-5"
-        >
-          <h3 className="font-semibold mb-4 flex items-center gap-2">
-            <ListTodo className="h-4 w-4 text-accent" />
-            Tarefas Pendentes
-          </h3>
-          <div className="space-y-3">
-            {pendingTasks.map((task) => (
-              <div key={task.id} className="p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors cursor-pointer">
-                <p className="text-sm font-medium mb-1">{task.title}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">{task.workflow}</span>
-                  <span className={`text-xs font-medium ${task.priority === "Alta" ? "text-destructive" : "text-warning"}`}>
-                    {task.priority}
-                  </span>
-                </div>
+              <div className="flex items-center gap-3 shrink-0">
+                <StatusBadge status={exec.status} />
+                <span className="text-xs text-muted-foreground hidden sm:block">{exec.date}</span>
               </div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
     </div>
   );
 }

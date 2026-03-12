@@ -19,7 +19,7 @@ const mainItems = [
 
 const adminItems = [
   { title: "Usuários", url: "/users", icon: Users },
-  { title: "Papéis", url: "/roles", icon: Shield },
+  
   { title: "Automações", url: "/automations", icon: Bot },
   { title: "Integrações", url: "/integrations", icon: Plug },
   { title: "Auditoria", url: "/audit", icon: FileText },

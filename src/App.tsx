@@ -42,8 +42,6 @@ function AppRoutes() {
         <Route path="/workflows" element={<Workflows />} />
         <Route path="/workflows/editor/:id" element={<WorkflowEditor />} />
         <Route path="/users" element={<UsersPage />} />
-        <Route path="/roles" element={<RolesPage />} />
-        <Route path="/tasks" element={<TasksPage />} />
         <Route path="/executions" element={<ExecutionsPage />} />
         <Route path="/automations" element={<AutomationsPage />} />
         <Route path="/integrations" element={<IntegrationsPage />} />
