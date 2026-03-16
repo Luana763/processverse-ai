@@ -3,18 +3,18 @@ import { Bot, Activity, Clock, AlertTriangle, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const mockAutomations = [
-  { id: "W-001", name: "Worker de Emails", status: "active" as const, lastRun: "5 min atrás", tasksProcessed: 1247, errorRate: "0.5%", uptime: "99.8%" },
-  { id: "W-002", name: "Worker de Documentos", status: "active" as const, lastRun: "2 min atrás", tasksProcessed: 856, errorRate: "1.2%", uptime: "99.5%" },
-  { id: "W-003", name: "Worker de Integrações", status: "active" as const, lastRun: "8 min atrás", tasksProcessed: 2341, errorRate: "0.3%", uptime: "99.9%" },
-  { id: "W-004", name: "Worker de IA", status: "inactive" as const, lastRun: "1h atrás", tasksProcessed: 432, errorRate: "2.1%", uptime: "98.5%" },
+  { id: "W-001", name: "Email Worker", status: "active" as const, lastRun: "5 min ago", tasksProcessed: 1247, errorRate: "0.5%", uptime: "99.8%" },
+  { id: "W-002", name: "Document Worker", status: "active" as const, lastRun: "2 min ago", tasksProcessed: 856, errorRate: "1.2%", uptime: "99.5%" },
+  { id: "W-003", name: "Integration Worker", status: "active" as const, lastRun: "8 min ago", tasksProcessed: 2341, errorRate: "0.3%", uptime: "99.9%" },
+  { id: "W-004", name: "AI Worker", status: "inactive" as const, lastRun: "1h ago", tasksProcessed: 432, errorRate: "2.1%", uptime: "98.5%" },
 ];
 
 export default function AutomationsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Monitoramento de Automações</h1>
-        <p className="text-muted-foreground">Status dos workers e automações</p>
+        <h1 className="text-2xl font-bold">Automation Monitoring</h1>
+        <p className="text-muted-foreground">Worker and automation status</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -42,21 +42,21 @@ export default function AutomationsPage() {
               <div className="p-2.5 rounded-lg bg-muted/50">
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
                   <Activity className="h-3 w-3" />
-                  Tarefas
+                  Tasks
                 </div>
                 <p className="text-sm font-semibold">{auto.tasksProcessed.toLocaleString()}</p>
               </div>
               <div className="p-2.5 rounded-lg bg-muted/50">
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
                   <Clock className="h-3 w-3" />
-                  Última execução
+                  Last run
                 </div>
                 <p className="text-sm font-semibold">{auto.lastRun}</p>
               </div>
               <div className="p-2.5 rounded-lg bg-muted/50">
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
                   <AlertTriangle className="h-3 w-3" />
-                  Taxa de erro
+                  Error rate
                 </div>
                 <p className="text-sm font-semibold">{auto.errorRate}</p>
               </div>

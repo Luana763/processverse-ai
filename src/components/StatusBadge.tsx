@@ -13,12 +13,12 @@ const statusStyles: Record<Status, string> = {
 };
 
 const statusLabels: Record<Status, string> = {
-  active: "Ativo",
-  inactive: "Inativo",
-  pending: "Pendente",
-  completed: "Concluído",
-  error: "Erro",
-  running: "Em execução",
+  active: "Active",
+  inactive: "Inactive",
+  pending: "Pending",
+  completed: "Completed",
+  error: "Error",
+  running: "Running",
 };
 
 export function StatusBadge({ status }: { status: Status }) {
