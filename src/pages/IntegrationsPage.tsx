@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/StatusBadge";
-import { Plus, Plug, Key, ExternalLink } from "lucide-react";
+import { Plus, Plug, Key } from "lucide-react";
 import { motion } from "framer-motion";
 
 const mockIntegrations = [
-  { id: "1", name: "SAP ERP", type: "REST API", status: "active" as const, lastSync: "5 min atrás", credentials: true },
-  { id: "2", name: "Salesforce CRM", type: "OAuth 2.0", status: "active" as const, lastSync: "10 min atrás", credentials: true },
-  { id: "3", name: "Azure AD", type: "SAML", status: "active" as const, lastSync: "15 min atrás", credentials: true },
-  { id: "4", name: "Google Workspace", type: "OAuth 2.0", status: "inactive" as const, lastSync: "2 dias atrás", credentials: false },
-  { id: "5", name: "Slack", type: "Webhook", status: "active" as const, lastSync: "1 min atrás", credentials: true },
+  { id: "1", name: "SAP ERP", type: "REST API", status: "active" as const, lastSync: "5 min ago", credentials: true },
+  { id: "2", name: "Salesforce CRM", type: "OAuth 2.0", status: "active" as const, lastSync: "10 min ago", credentials: true },
+  { id: "3", name: "Azure AD", type: "SAML", status: "active" as const, lastSync: "15 min ago", credentials: true },
+  { id: "4", name: "Google Workspace", type: "OAuth 2.0", status: "inactive" as const, lastSync: "2 days ago", credentials: false },
+  { id: "5", name: "Slack", type: "Webhook", status: "active" as const, lastSync: "1 min ago", credentials: true },
 ];
 
 export default function IntegrationsPage() {
@@ -16,12 +16,12 @@ export default function IntegrationsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Integrações</h1>
-          <p className="text-muted-foreground">Configure conexões com sistemas externos</p>
+          <h1 className="text-2xl font-bold">Integrations</h1>
+          <p className="text-muted-foreground">Configure connections with external systems</p>
         </div>
         <Button className="gradient-primary text-primary-foreground shadow-glow hover:shadow-glow-accent transition-shadow">
           <Plus className="h-4 w-4 mr-2" />
-          Nova Integração
+          New Integration
         </Button>
       </div>
 
@@ -46,7 +46,7 @@ export default function IntegrationsPage() {
               <span>Sync: {integ.lastSync}</span>
               <div className="flex items-center gap-1">
                 <Key className="h-3 w-3" />
-                <span>{integ.credentials ? "Configurado" : "Pendente"}</span>
+                <span>{integ.credentials ? "Configured" : "Pending"}</span>
               </div>
             </div>
           </motion.div>

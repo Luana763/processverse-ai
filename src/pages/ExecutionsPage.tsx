@@ -1,22 +1,22 @@
 import { StatusBadge } from "@/components/StatusBadge";
-import { GitBranch, Clock, User } from "lucide-react";
+import { GitBranch } from "lucide-react";
 import { motion } from "framer-motion";
 
 const mockExecutions = [
-  { id: "EX-001", workflow: "Aprovação de Reembolso", status: "completed" as const, startedBy: "Maria Silva", startedAt: "10/03/2026 10:30", duration: "12 min", steps: "5/5" },
-  { id: "EX-002", workflow: "Provisionamento de Acesso", status: "running" as const, startedBy: "João Santos", startedAt: "10/03/2026 10:15", duration: "Em andamento", steps: "2/3" },
-  { id: "EX-003", workflow: "Validação de Políticas", status: "error" as const, startedBy: "Sistema", startedAt: "10/03/2026 09:45", duration: "5 min", steps: "3/4" },
-  { id: "EX-004", workflow: "Classificação de Documentos", status: "completed" as const, startedBy: "Sistema IA", startedAt: "10/03/2026 09:00", duration: "2 min", steps: "3/3" },
-  { id: "EX-005", workflow: "Onboarding de Funcionário", status: "completed" as const, startedBy: "Ana Costa", startedAt: "09/03/2026 16:30", duration: "45 min", steps: "8/8" },
-  { id: "EX-006", workflow: "Detecção de Anomalias", status: "pending" as const, startedBy: "Sistema IA", startedAt: "09/03/2026 15:00", duration: "Aguardando", steps: "0/6" },
+  { id: "EX-001", workflow: "Reimbursement Approval", status: "completed" as const, startedBy: "Maria Silva", startedAt: "03/10/2026 10:30", duration: "12 min", steps: "5/5" },
+  { id: "EX-002", workflow: "Access Provisioning", status: "running" as const, startedBy: "João Santos", startedAt: "03/10/2026 10:15", duration: "In progress", steps: "2/3" },
+  { id: "EX-003", workflow: "Policy Validation", status: "error" as const, startedBy: "System", startedAt: "03/10/2026 09:45", duration: "5 min", steps: "3/4" },
+  { id: "EX-004", workflow: "Document Classification", status: "completed" as const, startedBy: "AI System", startedAt: "03/10/2026 09:00", duration: "2 min", steps: "3/3" },
+  { id: "EX-005", workflow: "Employee Onboarding", status: "completed" as const, startedBy: "Ana Costa", startedAt: "03/09/2026 16:30", duration: "45 min", steps: "8/8" },
+  { id: "EX-006", workflow: "Anomaly Detection", status: "pending" as const, startedBy: "AI System", startedAt: "03/09/2026 15:00", duration: "Waiting", steps: "0/6" },
 ];
 
 export default function ExecutionsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Execuções</h1>
-        <p className="text-muted-foreground">Histórico de execuções de workflows</p>
+        <h1 className="text-2xl font-bold">Executions</h1>
+        <p className="text-muted-foreground">Workflow execution history</p>
       </div>
 
       <div className="bg-card rounded-xl border shadow-card overflow-hidden">
@@ -27,10 +27,10 @@ export default function ExecutionsPage() {
                 <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">ID</th>
                 <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Workflow</th>
                 <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Status</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3 hidden md:table-cell">Iniciado por</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3 hidden lg:table-cell">Data</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Duração</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Etapas</th>
+                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3 hidden md:table-cell">Started by</th>
+                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3 hidden lg:table-cell">Date</th>
+                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Duration</th>
+                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Steps</th>
               </tr>
             </thead>
             <tbody>

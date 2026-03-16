@@ -22,10 +22,10 @@ export default function Login() {
     try {
       const success = await login(email, password);
       if (success) {
-        toast.success("Login realizado com sucesso!");
+        toast.success("Login successful!");
         navigate("/dashboard");
       } else {
-        toast.error("Credenciais inválidas");
+        toast.error("Invalid credentials");
       }
     } finally {
       setLoading(false);
@@ -34,9 +34,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left panel - branding */}
       <div className="hidden lg:flex lg:w-1/2 gradient-hero items-center justify-center p-12 relative overflow-hidden">
-        {/* Decorative circles */}
         <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-primary-foreground/5 animate-float" />
         <div className="absolute bottom-20 right-20 w-48 h-48 rounded-full bg-primary-foreground/10 animate-float" style={{ animationDelay: "1s" }} />
         <div className="absolute top-1/2 left-1/4 w-32 h-32 rounded-full bg-primary-foreground/5 animate-float" style={{ animationDelay: "2s" }} />
@@ -54,15 +52,14 @@ export default function Login() {
             <span className="text-3xl font-bold">FlowPulse</span>
           </div>
           <h1 className="text-4xl font-bold mb-4 leading-tight">
-            Automatize seus processos com inteligência
+            Automate your processes with intelligence
           </h1>
           <p className="text-lg text-primary-foreground/80 leading-relaxed">
-            Plataforma completa de automação e gerenciamento de workflows para transformar a eficiência da sua organização.
+            A complete automation and workflow management platform to transform your organization's efficiency.
           </p>
         </motion.div>
       </div>
 
-      {/* Right panel - form */}
       <div className="flex-1 flex items-center justify-center p-8 bg-background">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,24 +74,24 @@ export default function Login() {
             <span className="text-2xl font-bold text-gradient">FlowPulse</span>
           </div>
 
-          <h2 className="text-2xl font-bold mb-1">Bem-vindo de volta</h2>
-          <p className="text-muted-foreground mb-8">Entre com suas credenciais para continuar</p>
+          <h2 className="text-2xl font-bold mb-1">Welcome back</h2>
+          <p className="text-muted-foreground mb-8">Enter your credentials to continue</p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
-              <Label htmlFor="email">E-mail</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="seu@email.com"
+                placeholder="you@email.com"
                 className="h-11"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Senha</Label>
+              <Label htmlFor="password">Password</Label>
               <div className="relative">
                 <Input
                   id="password"
@@ -115,12 +112,12 @@ export default function Login() {
               </div>
             </div>
             <Button type="submit" className="w-full h-11 gradient-primary text-primary-foreground shadow-glow hover:shadow-glow-accent transition-shadow duration-300" disabled={loading}>
-              {loading ? "Entrando..." : "Entrar"}
+              {loading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
 
           <p className="text-center text-xs text-muted-foreground mt-6">
-            Demo: use qualquer e-mail e senha
+            Demo: use any email and password
           </p>
         </motion.div>
       </div>

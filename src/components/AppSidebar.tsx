@@ -13,24 +13,21 @@ import {
 const mainItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "Workflows", url: "/workflows", icon: GitBranch },
-  
-  { title: "Execuções", url: "/executions", icon: History },
+  { title: "Executions", url: "/executions", icon: History },
 ];
 
 const adminItems = [
-  { title: "Usuários", url: "/users", icon: Users },
-  
-  { title: "Automações", url: "/automations", icon: Bot },
-  { title: "Integrações", url: "/integrations", icon: Plug },
-  { title: "Auditoria", url: "/audit", icon: FileText },
-  { title: "Configurações", url: "/settings", icon: Settings },
+  { title: "Users", url: "/users", icon: Users },
+  { title: "Automations", url: "/automations", icon: Bot },
+  { title: "Integrations", url: "/integrations", icon: Plug },
+  { title: "Audit", url: "/audit", icon: FileText },
+  { title: "Settings", url: "/settings", icon: Settings },
 ];
 
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
-  const isActive = (path: string) => location.pathname.startsWith(path);
 
   return (
     <Sidebar collapsible="icon">
@@ -46,7 +43,7 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Principal</SidebarGroupLabel>
+          <SidebarGroupLabel>Main</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainItems.map((item) => (
@@ -68,7 +65,7 @@ export function AppSidebar() {
         </SidebarGroup>
 
         <SidebarGroup>
-          <SidebarGroupLabel>Administração</SidebarGroupLabel>
+          <SidebarGroupLabel>Administration</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {adminItems.map((item) => (

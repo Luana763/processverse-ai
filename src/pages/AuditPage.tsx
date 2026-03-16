@@ -1,18 +1,17 @@
-import { FileText, User, Clock, Filter } from "lucide-react";
+import { Filter } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
 const mockLogs = [
-  { id: 1, user: "Maria Silva", action: "Aprovou tarefa #1245", entity: "Workflow: Reembolso", date: "10/03/2026 10:30:15", ip: "192.168.1.10" },
-  { id: 2, user: "João Santos", action: "Iniciou execução do workflow", entity: "Workflow: Provisionamento", date: "10/03/2026 10:15:22", ip: "192.168.1.25" },
-  { id: 3, user: "Admin User", action: "Criou novo usuário", entity: "Usuário: Beatriz Rocha", date: "10/03/2026 09:45:08", ip: "192.168.1.1" },
-  { id: 4, user: "Sistema", action: "Worker falhou na execução", entity: "Automação: Worker de IA", date: "10/03/2026 09:30:00", ip: "interno" },
-  { id: 5, user: "Ana Costa", action: "Upload de documento", entity: "Arquivo: relatorio_q1.pdf", date: "10/03/2026 09:00:33", ip: "192.168.2.15" },
-  { id: 6, user: "Admin User", action: "Alterou papel de usuário", entity: "Usuário: Carlos Lima", date: "09/03/2026 16:45:12", ip: "192.168.1.1" },
-  { id: 7, user: "Sistema IA", action: "Classificou documento", entity: "Documento: NF-3891", date: "09/03/2026 15:20:00", ip: "interno" },
-  { id: 8, user: "Maria Silva", action: "Rejeitou tarefa #1240", entity: "Workflow: Validação", date: "09/03/2026 14:10:45", ip: "192.168.1.10" },
+  { id: 1, user: "Maria Silva", action: "Approved task #1245", entity: "Workflow: Reimbursement", date: "03/10/2026 10:30:15", ip: "192.168.1.10" },
+  { id: 2, user: "João Santos", action: "Started workflow execution", entity: "Workflow: Provisioning", date: "03/10/2026 10:15:22", ip: "192.168.1.25" },
+  { id: 3, user: "Admin User", action: "Created new user", entity: "User: Beatriz Rocha", date: "03/10/2026 09:45:08", ip: "192.168.1.1" },
+  { id: 4, user: "System", action: "Worker execution failed", entity: "Automation: AI Worker", date: "03/10/2026 09:30:00", ip: "internal" },
+  { id: 5, user: "Ana Costa", action: "Uploaded document", entity: "File: report_q1.pdf", date: "03/10/2026 09:00:33", ip: "192.168.2.15" },
+  { id: 6, user: "Admin User", action: "Changed user role", entity: "User: Carlos Lima", date: "03/09/2026 16:45:12", ip: "192.168.1.1" },
+  { id: 7, user: "AI System", action: "Classified document", entity: "Document: INV-3891", date: "03/09/2026 15:20:00", ip: "internal" },
+  { id: 8, user: "Maria Silva", action: "Rejected task #1240", entity: "Workflow: Validation", date: "03/09/2026 14:10:45", ip: "192.168.1.10" },
 ];
 
 export default function AuditPage() {
@@ -24,14 +23,14 @@ export default function AuditPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Auditoria</h1>
-        <p className="text-muted-foreground">Log de ações do sistema</p>
+        <h1 className="text-2xl font-bold">Audit</h1>
+        <p className="text-muted-foreground">System action log</p>
       </div>
 
       <div className="flex gap-2 max-w-md">
         <div className="relative flex-1">
           <Filter className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Filtrar logs..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9" />
+          <Input placeholder="Filter logs..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-9" />
         </div>
       </div>
 
@@ -40,10 +39,10 @@ export default function AuditPage() {
           <table className="w-full">
             <thead>
               <tr className="border-b bg-muted/30">
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Data</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Usuário</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Ação</th>
-                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3 hidden md:table-cell">Entidade</th>
+                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Date</th>
+                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">User</th>
+                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3">Action</th>
+                <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3 hidden md:table-cell">Entity</th>
                 <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-5 py-3 hidden lg:table-cell">IP</th>
               </tr>
             </thead>

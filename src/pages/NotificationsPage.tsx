@@ -14,11 +14,11 @@ interface Notification {
 }
 
 const initialNotifications: Notification[] = [
-  { id: 1, title: "Workflow concluído", description: "Aprovação de Reembolso #1247 foi finalizado com sucesso", type: "workflow", time: "5 min atrás", read: false },
-  { id: 2, title: "Falha na automação", description: "Worker de IA encontrou erro ao processar documento", type: "alert", time: "15 min atrás", read: false },
-  { id: 3, title: "Novo usuário criado", description: "Beatriz Rocha foi adicionada à organização ACME Corp", type: "user", time: "1h atrás", read: false },
-  { id: 4, title: "Tarefa atribuída", description: "Você tem uma nova tarefa pendente: Validar documento fiscal NF-3891", type: "workflow", time: "2h atrás", read: true },
-  { id: 5, title: "Atualização do sistema", description: "Nova versão do FlowPulse disponível com melhorias de performance", type: "system", time: "1 dia atrás", read: true },
+  { id: 1, title: "Workflow completed", description: "Reimbursement Approval #1247 was successfully completed", type: "workflow", time: "5 min ago", read: false },
+  { id: 2, title: "Automation failure", description: "AI Worker encountered an error processing a document", type: "alert", time: "15 min ago", read: false },
+  { id: 3, title: "New user created", description: "Beatriz Rocha was added to ACME Corp organization", type: "user", time: "1h ago", read: false },
+  { id: 4, title: "Task assigned", description: "You have a new pending task: Validate fiscal document INV-3891", type: "workflow", time: "2h ago", read: true },
+  { id: 5, title: "System update", description: "New FlowPulse version available with performance improvements", type: "system", time: "1 day ago", read: true },
 ];
 
 const iconMap = {
@@ -33,7 +33,7 @@ export default function NotificationsPage() {
 
   const markAllRead = () => {
     setNotifications((prev) => prev.map((n) => ({ ...n, read: true })));
-    toast.success("Todas notificações marcadas como lidas");
+    toast.success("All notifications marked as read");
   };
 
   const markRead = (id: number) => {
@@ -44,12 +44,12 @@ export default function NotificationsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Notificações</h1>
-          <p className="text-muted-foreground">{notifications.filter((n) => !n.read).length} não lidas</p>
+          <h1 className="text-2xl font-bold">Notifications</h1>
+          <p className="text-muted-foreground">{notifications.filter((n) => !n.read).length} unread</p>
         </div>
         <Button variant="outline" size="sm" onClick={markAllRead}>
           <CheckCheck className="h-3.5 w-3.5 mr-1" />
-          Marcar todas como lidas
+          Mark all as read
         </Button>
       </div>
 

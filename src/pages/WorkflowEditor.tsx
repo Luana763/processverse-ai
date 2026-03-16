@@ -66,27 +66,27 @@ interface NodeTemplate {
 
 const nodeTemplates: NodeTemplate[] = [
   // Triggers
-  { label: "Webhook", type: "trigger", icon: Globe, description: "Recebe requisições HTTP", category: "Triggers" },
-  { label: "Agendamento", type: "timing", icon: Clock, description: "Executa em horários definidos", category: "Triggers" },
-  { label: "Evento", type: "trigger", icon: Zap, description: "Dispara por evento do sistema", category: "Triggers" },
-  // Ações
-  { label: "HTTP Request", type: "action", icon: Send, description: "Faz chamada HTTP externa", category: "Ações" },
-  { label: "Enviar Email", type: "communication", icon: Mail, description: "Envia email via SMTP", category: "Ações" },
-  { label: "Banco de Dados", type: "data", icon: Database, description: "Consulta ou grava dados", category: "Ações" },
-  { label: "Código", type: "code", icon: Code, description: "Executa código customizado", category: "Ações" },
-  // Fluxo
-  { label: "Decisão (IF)", type: "decision", icon: GitMerge, description: "Condicional verdadeiro/falso", category: "Fluxo" },
-  { label: "Switch", type: "decision", icon: Workflow, description: "Múltiplas condições", category: "Fluxo" },
-  // IA & Processamento
-  { label: "Análise IA", type: "ai", icon: Brain, description: "Processa com inteligência artificial", category: "IA" },
-  { label: "Extração Dados", type: "ai", icon: FileSearch, description: "Extrai dados de documentos", category: "IA" },
-  { label: "Classificação", type: "ai", icon: ShieldCheck, description: "Classifica e categoriza", category: "IA" },
-  // Humano
-  { label: "Aprovação", type: "approval", icon: UserCheck, description: "Aguarda aprovação humana", category: "Humano" },
-  // Integração
-  { label: "SAP", type: "integration", icon: Cog, description: "Integração com SAP ERP", category: "Integrações" },
-  { label: "Salesforce", type: "integration", icon: Globe, description: "Integração com Salesforce", category: "Integrações" },
-  { label: "Slack", type: "communication", icon: Send, description: "Envia mensagem no Slack", category: "Integrações" },
+  { label: "Webhook", type: "trigger", icon: Globe, description: "Receives HTTP requests", category: "Triggers" },
+  { label: "Schedule", type: "timing", icon: Clock, description: "Runs at defined times", category: "Triggers" },
+  { label: "Event", type: "trigger", icon: Zap, description: "Triggered by system event", category: "Triggers" },
+  // Actions
+  { label: "HTTP Request", type: "action", icon: Send, description: "Makes external HTTP call", category: "Actions" },
+  { label: "Send Email", type: "communication", icon: Mail, description: "Sends email via SMTP", category: "Actions" },
+  { label: "Database", type: "data", icon: Database, description: "Queries or writes data", category: "Actions" },
+  { label: "Code", type: "code", icon: Code, description: "Runs custom code", category: "Actions" },
+  // Flow
+  { label: "Decision (IF)", type: "decision", icon: GitMerge, description: "True/false conditional", category: "Flow" },
+  { label: "Switch", type: "decision", icon: Workflow, description: "Multiple conditions", category: "Flow" },
+  // AI & Processing
+  { label: "AI Analysis", type: "ai", icon: Brain, description: "Processes with AI", category: "AI" },
+  { label: "Data Extraction", type: "ai", icon: FileSearch, description: "Extracts data from documents", category: "AI" },
+  { label: "Classification", type: "ai", icon: ShieldCheck, description: "Classifies and categorizes", category: "AI" },
+  // Human
+  { label: "Approval", type: "approval", icon: UserCheck, description: "Awaits human approval", category: "Human" },
+  // Integrations
+  { label: "SAP", type: "integration", icon: Cog, description: "SAP ERP integration", category: "Integrations" },
+  { label: "Salesforce", type: "integration", icon: Globe, description: "Salesforce integration", category: "Integrations" },
+  { label: "Slack", type: "communication", icon: Send, description: "Sends Slack message", category: "Integrations" },
 ];
 
 const categories = [...new Set(nodeTemplates.map(t => t.category))];
@@ -110,7 +110,6 @@ function CustomNode({ data, selected }: { data: Record<string, any>; selected?: 
         style={{ background: color }}
       />
 
-      {/* Header */}
       <div className="px-3 py-2.5 flex items-center gap-2.5">
         <div
           className="h-8 w-8 rounded-lg flex items-center justify-center shrink-0"
@@ -126,13 +125,12 @@ function CustomNode({ data, selected }: { data: Record<string, any>; selected?: 
         </div>
       </div>
 
-      {/* Footer with type badge */}
       <div className="px-3 py-1.5 bg-muted/30 border-t flex items-center justify-between">
         <span className="text-[9px] uppercase tracking-wider font-medium text-muted-foreground">
           {data.type as string}
         </span>
         {selected && (
-          <span className="text-[9px] text-primary font-medium">Selecionado</span>
+          <span className="text-[9px] text-primary font-medium">Selected</span>
         )}
       </div>
 
@@ -148,23 +146,21 @@ function CustomNode({ data, selected }: { data: Record<string, any>; selected?: 
 
 const nodeTypesMap = { custom: CustomNode };
 
-// ─── Default edge style ──────────────────────────────────────────
 const defaultEdgeOptions = {
   style: { stroke: "hsl(262, 60%, 65%)", strokeWidth: 2 },
   markerEnd: { type: MarkerType.ArrowClosed, color: "hsl(262, 60%, 65%)" },
   animated: true,
 };
 
-// ─── Mock workflow data ──────────────────────────────────────────
 const workflowData: Record<string, { name: string; description: string; status: "active" | "inactive"; nodes: Node[]; edges: Edge[] }> = {
   "wf-001": {
-    name: "Aprovação de Reembolso", description: "Workflow de aprovação com múltiplos níveis", status: "active",
+    name: "Reimbursement Approval", description: "Multi-level approval workflow", status: "active",
     nodes: [
-      { id: "1", type: "custom", position: { x: 250, y: 0 }, data: { label: "Solicitação", type: "trigger", icon: Zap, description: "Recebe solicitação" } },
-      { id: "2", type: "custom", position: { x: 250, y: 160 }, data: { label: "Validar Política", type: "processing", icon: Cog, description: "Verifica limites" } },
-      { id: "3", type: "custom", position: { x: 80, y: 320 }, data: { label: "Valor > R$500?", type: "decision", icon: GitMerge, description: "Condicional" } },
-      { id: "4", type: "custom", position: { x: 420, y: 320 }, data: { label: "Aprovação Gerente", type: "approval", icon: UserCheck, description: "Aguarda aprovação" } },
-      { id: "5", type: "custom", position: { x: 250, y: 480 }, data: { label: "Processar Pagamento", type: "integration", icon: Cog, description: "Envia para SAP" } },
+      { id: "1", type: "custom", position: { x: 250, y: 0 }, data: { label: "Request", type: "trigger", icon: Zap, description: "Receives request" } },
+      { id: "2", type: "custom", position: { x: 250, y: 160 }, data: { label: "Validate Policy", type: "processing", icon: Cog, description: "Checks limits" } },
+      { id: "3", type: "custom", position: { x: 80, y: 320 }, data: { label: "Amount > $500?", type: "decision", icon: GitMerge, description: "Conditional" } },
+      { id: "4", type: "custom", position: { x: 420, y: 320 }, data: { label: "Manager Approval", type: "approval", icon: UserCheck, description: "Awaits approval" } },
+      { id: "5", type: "custom", position: { x: 250, y: 480 }, data: { label: "Process Payment", type: "integration", icon: Cog, description: "Sends to SAP" } },
     ],
     edges: [
       { id: "e1-2", source: "1", target: "2" },
@@ -175,11 +171,11 @@ const workflowData: Record<string, { name: string; description: string; status: 
     ],
   },
   "wf-005": {
-    name: "Classificação de Documentos", description: "Classificação com IA", status: "active",
+    name: "Document Classification", description: "AI-powered classification", status: "active",
     nodes: [
-      { id: "1", type: "custom", position: { x: 250, y: 0 }, data: { label: "Upload", type: "trigger", icon: FileSearch, description: "Recebe documento" } },
-      { id: "2", type: "custom", position: { x: 250, y: 160 }, data: { label: "Análise IA", type: "ai", icon: Brain, description: "Classifica documento" } },
-      { id: "3", type: "custom", position: { x: 250, y: 320 }, data: { label: "Armazenar", type: "data", icon: Database, description: "Salva resultado" } },
+      { id: "1", type: "custom", position: { x: 250, y: 0 }, data: { label: "Upload", type: "trigger", icon: FileSearch, description: "Receives document" } },
+      { id: "2", type: "custom", position: { x: 250, y: 160 }, data: { label: "AI Analysis", type: "ai", icon: Brain, description: "Classifies document" } },
+      { id: "3", type: "custom", position: { x: 250, y: 320 }, data: { label: "Store", type: "data", icon: Database, description: "Saves result" } },
     ],
     edges: [
       { id: "e1-2", source: "1", target: "2" },
@@ -189,14 +185,13 @@ const workflowData: Record<string, { name: string; description: string; status: 
 };
 
 const defaultData = {
-  name: "Novo Workflow", description: "", status: "inactive" as const,
+  name: "New Workflow", description: "", status: "inactive" as const,
   nodes: [
-    { id: "1", type: "custom", position: { x: 300, y: 50 }, data: { label: "Trigger", type: "trigger", icon: Zap, description: "Início do fluxo" } },
+    { id: "1", type: "custom", position: { x: 300, y: 50 }, data: { label: "Trigger", type: "trigger", icon: Zap, description: "Flow start" } },
   ] as Node[],
   edges: [] as Edge[],
 };
 
-// ─── Inner editor (needs ReactFlowProvider) ──────────────────────
 function WorkflowEditorInner() {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -220,7 +215,6 @@ function WorkflowEditorInner() {
     [setEdges]
   );
 
-  // ─── Drag & Drop ────────────────────────────────
   const onDragOver = useCallback((event: DragEvent) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = "move";
@@ -233,7 +227,6 @@ function WorkflowEditorInner() {
       if (!raw) return;
 
       const template: NodeTemplate = JSON.parse(raw);
-      // Reconstruct icon from name
       const iconMap: Record<string, LucideIcon> = {
         Globe, Clock, Zap, Send, Mail, Database, Code, GitMerge, Workflow,
         Brain, FileSearch, ShieldCheck, UserCheck, Cog,
@@ -255,7 +248,7 @@ function WorkflowEditorInner() {
       };
 
       setNodes((nds) => [...nds, newNode]);
-      toast.success(`"${template.label}" adicionado ao canvas`);
+      toast.success(`"${template.label}" added to canvas`);
     },
     [screenToFlowPosition, setNodes]
   );
@@ -266,13 +259,12 @@ function WorkflowEditorInner() {
     event.dataTransfer.effectAllowed = "move";
   };
 
-  // ─── Node actions ───────────────────────────────
   const deleteSelectedNode = () => {
     if (!selectedNode) return;
     setNodes((nds) => nds.filter((n) => n.id !== selectedNode.id));
     setEdges((eds) => eds.filter((e) => e.source !== selectedNode.id && e.target !== selectedNode.id));
     setSelectedNode(null);
-    toast.success("Nó removido");
+    toast.success("Node removed");
   };
 
   const onNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
@@ -284,15 +276,15 @@ function WorkflowEditorInner() {
   }, []);
 
   const handleSave = () => {
-    toast.success(`Workflow "${workflowName}" salvo!`);
+    toast.success(`Workflow "${workflowName}" saved!`);
   };
 
   const handleExecute = () => {
     if (workflowStatus === "inactive") {
-      toast.error("Ative o workflow antes de executar");
+      toast.error("Activate the workflow before executing");
       return;
     }
-    toast.success(`Execução iniciada: ${workflowName}`);
+    toast.success(`Execution started: ${workflowName}`);
   };
 
   const filteredTemplates = nodeTemplates.filter(
@@ -328,15 +320,15 @@ function WorkflowEditorInner() {
             className={`text-[10px] cursor-pointer ${workflowStatus === "active" ? "gradient-primary text-primary-foreground" : ""}`}
             onClick={() => {
               setWorkflowStatus(workflowStatus === "active" ? "inactive" : "active");
-              toast.success(workflowStatus === "active" ? "Workflow desativado" : "Workflow ativado");
+              toast.success(workflowStatus === "active" ? "Workflow deactivated" : "Workflow activated");
             }}
           >
-            {workflowStatus === "active" ? "● Ativo" : "○ Inativo"}
+            {workflowStatus === "active" ? "● Active" : "○ Inactive"}
           </Badge>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="text-xs text-muted-foreground mr-2">
-            {nodes.length} nós · {edges.length} conexões
+            {nodes.length} nodes · {edges.length} connections
           </span>
           {selectedNode && (
             <Tooltip>
@@ -349,7 +341,7 @@ function WorkflowEditorInner() {
                   <Trash2 className="h-3.5 w-3.5" />
                 </Button>
               </TooltipTrigger>
-              <TooltipContent>Excluir nó selecionado</TooltipContent>
+              <TooltipContent>Delete selected node</TooltipContent>
             </Tooltip>
           )}
           <Tooltip>
@@ -358,18 +350,18 @@ function WorkflowEditorInner() {
                 <Settings className="h-3.5 w-3.5" />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Configurações</TooltipContent>
+            <TooltipContent>Settings</TooltipContent>
           </Tooltip>
           <Button variant="outline" size="sm" className="h-8" onClick={handleSave}>
             <Save className="h-3.5 w-3.5 mr-1" />
-            Salvar
+            Save
           </Button>
           <Button
             size="sm" className="h-8 gradient-primary text-primary-foreground shadow-glow hover:shadow-glow-accent transition-shadow"
             onClick={handleExecute}
           >
             <Play className="h-3.5 w-3.5 mr-1" />
-            Executar
+            Execute
           </Button>
         </div>
       </div>
@@ -386,7 +378,7 @@ function WorkflowEditorInner() {
               className="border-r bg-card/70 backdrop-blur-sm flex flex-col overflow-hidden z-10"
             >
               <div className="p-3 border-b flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Componentes</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Components</span>
                 <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setShowPalette(false)}>
                   <X className="h-3.5 w-3.5" />
                 </Button>
@@ -394,7 +386,7 @@ function WorkflowEditorInner() {
 
               <div className="p-2">
                 <Input
-                  placeholder="Buscar nós..."
+                  placeholder="Search nodes..."
                   value={paletteSearch}
                   onChange={(e) => setPaletteSearch(e.target.value)}
                   className="h-8 text-xs"
@@ -442,14 +434,13 @@ function WorkflowEditorInner() {
               <div className="p-3 border-t">
                 <p className="text-[10px] text-muted-foreground text-center">
                   <GripVertical className="h-3 w-3 inline mr-1" />
-                  Arraste para o canvas
+                  Drag to canvas
                 </p>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Toggle palette button */}
         {!showPalette && (
           <motion.div
             initial={{ opacity: 0, x: -10 }}
@@ -463,7 +454,7 @@ function WorkflowEditorInner() {
               onClick={() => setShowPalette(true)}
             >
               <Plus className="h-4 w-4 mr-1.5" />
-              Nós
+              Nodes
             </Button>
           </motion.div>
         )}
@@ -508,7 +499,7 @@ function WorkflowEditorInner() {
               className="border-l bg-card/70 backdrop-blur-sm flex flex-col overflow-hidden"
             >
               <div className="p-3 border-b flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Propriedades</span>
+                <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Properties</span>
                 <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => setSelectedNode(null)}>
                   <X className="h-3.5 w-3.5" />
                 </Button>
@@ -533,7 +524,7 @@ function WorkflowEditorInner() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-xs">Nome do Nó</Label>
+                  <Label className="text-xs">Node Name</Label>
                   <Input
                     value={(selectedNode.data as any).label}
                     onChange={(e) => {
@@ -551,7 +542,7 @@ function WorkflowEditorInner() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-xs">Descrição</Label>
+                  <Label className="text-xs">Description</Label>
                   <Textarea
                     value={(selectedNode.data as any).description || ""}
                     onChange={(e) => {
@@ -570,7 +561,7 @@ function WorkflowEditorInner() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-xs">Posição</Label>
+                  <Label className="text-xs">Position</Label>
                   <div className="grid grid-cols-2 gap-2">
                     <div>
                       <span className="text-[10px] text-muted-foreground">X</span>
@@ -584,10 +575,10 @@ function WorkflowEditorInner() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label className="text-xs">Conexões</Label>
+                  <Label className="text-xs">Connections</Label>
                   <div className="text-xs text-muted-foreground space-y-1">
-                    <p>Entradas: {edges.filter(e => e.target === selectedNode.id).length}</p>
-                    <p>Saídas: {edges.filter(e => e.source === selectedNode.id).length}</p>
+                    <p>Inputs: {edges.filter(e => e.target === selectedNode.id).length}</p>
+                    <p>Outputs: {edges.filter(e => e.source === selectedNode.id).length}</p>
                   </div>
                 </div>
 
@@ -599,7 +590,7 @@ function WorkflowEditorInner() {
                     onClick={deleteSelectedNode}
                   >
                     <Trash2 className="h-3.5 w-3.5 mr-1.5" />
-                    Excluir Nó
+                    Delete Node
                   </Button>
                 </div>
               </div>
@@ -612,23 +603,23 @@ function WorkflowEditorInner() {
       <Sheet open={showSettings} onOpenChange={setShowSettings}>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Configurações do Workflow</SheetTitle>
-            <SheetDescription>Edite as propriedades gerais</SheetDescription>
+            <SheetTitle>Workflow Settings</SheetTitle>
+            <SheetDescription>Edit general properties</SheetDescription>
           </SheetHeader>
           <div className="space-y-4 mt-6">
             <div className="space-y-2">
-              <Label>Nome</Label>
+              <Label>Name</Label>
               <Input value={workflowName} onChange={(e) => setWorkflowName(e.target.value)} />
             </div>
             <div className="space-y-2">
-              <Label>Descrição</Label>
+              <Label>Description</Label>
               <Textarea value={workflowDesc} onChange={(e) => setWorkflowDesc(e.target.value)} rows={3} />
             </div>
             <div className="flex items-center justify-between">
               <Label>Status</Label>
               <div className="flex items-center gap-2">
                 <span className="text-sm text-muted-foreground">
-                  {workflowStatus === "active" ? "Ativo" : "Inativo"}
+                  {workflowStatus === "active" ? "Active" : "Inactive"}
                 </span>
                 <Switch
                   checked={workflowStatus === "active"}
@@ -637,8 +628,8 @@ function WorkflowEditorInner() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label>Estatísticas</Label>
-              <p className="text-sm text-muted-foreground">{nodes.length} nós, {edges.length} conexões</p>
+              <Label>Statistics</Label>
+              <p className="text-sm text-muted-foreground">{nodes.length} nodes, {edges.length} connections</p>
             </div>
           </div>
         </SheetContent>
@@ -647,7 +638,6 @@ function WorkflowEditorInner() {
   );
 }
 
-// ─── Wrapper with provider ───────────────────────────────────────
 export default function WorkflowEditor() {
   return (
     <ReactFlowProvider>
